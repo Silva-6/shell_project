@@ -29,4 +29,3 @@ void *_realloc(void *ptr, int old, int new)
 			return (NULL);
 	}
 }
-
