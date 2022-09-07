@@ -19,4 +19,3 @@ char *_getenv(char *path)
 	}
 	return (NULL);
 }
-
