@@ -133,7 +133,7 @@ int is_delimeter(const char *delimeters, char c)
 	return (0);
 }
 
-void shell_execute(char **command, int cmd_type, data_h *p)
+void shell_execute(char **command, int cmd_type)
 {
 	int stat;
 	pid_t PID;
@@ -144,7 +144,7 @@ void shell_execute(char **command, int cmd_type, data_h *p)
 
 		if (PID == 0)
 		{
-			execute(command, cmd_type, p);
+			execute(command, cmd_type);
 		}
 		if (PID < 0)
 		{
@@ -155,7 +155,7 @@ void shell_execute(char **command, int cmd_type, data_h *p)
 			wait(&stat);
 	}
 	else
-		execute(command, cmd_type, p);
+		execute(command, cmd_type);
 }
 
 int check_command(char *command)
@@ -182,9 +182,10 @@ int check_command(char *command)
 	
 }
 
-void execute(char **commands, int cmd_type, data_h *var)
+
+void execute(char **commands, int cmd_type)
 {
-	void (*func)(char **command, data_h p);
+	void (*func)(char **command);
 
 	switch (cmd_type)
 	{
@@ -199,9 +200,8 @@ void execute(char **commands, int cmd_type, data_h *var)
 			}
 		case INTERNAL_CMD:
 			{
-				print("<<got here>>\n")
 				func = get_func(commands[0]);
-				func(commands, var);
+				func(commands);
 				break;
 			}
 		case PATH_CMD:
@@ -214,4 +214,3 @@ void execute(char **commands, int cmd_type, data_h *var)
 			}
 	}
 }
-
