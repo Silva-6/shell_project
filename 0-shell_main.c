@@ -32,7 +32,7 @@ int main (int argc __attribute__((unused)),
 		}
 		args = tokenize(line, DELIM);
 		cmd_type = check_command(args[0]);
-		shell_execute(args, cmd_type, &var);
+		shell_execute(args, cmd_type);
 	}
 	return (1);
 }
