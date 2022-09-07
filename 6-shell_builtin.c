@@ -11,44 +11,12 @@ void env(char **command __attribute__((unused)))
 	}
 }
 
-#define SET_OLD(V) (V = _strdup(_getenv("OLDPWD")))
-void quit(char **command, data_h *var)
-{
+void quit(char **command)
+	{
 	(void) command;
 }
 
-void ch_dir(char **command, data_h *var)
+void ch_dir(char **command)
 {
-	char *home;
-
-	home = _getenv("HOME");
-	if (command[1] == NULL)
-	{
-		SET_OLD(var->oldPath);
-		if (chdir(home) < 0)
-			exit(EXIT_FAILURE);
-
-	}
-	if (strcmp(command[1], "-") == 0)
-	{
-		if (var->oldPath == NULL)
-		{
-			SET_OLD(var->oldPath);
-			if (chdir(var->oldPath) < 0)
-				exit(EXIT_FAILURE);
-		}
-		else
-		{
-
-			SETPWD(var->oldPath);
-			if (chdir(var->oldPath) < 0)
-				exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		SET_OLD(var->oldPath);
-		if (chdir(var->oldPath) < 0)
-			exit(EXIT_FAILURE);
-	}
+	(void) command;
 }
