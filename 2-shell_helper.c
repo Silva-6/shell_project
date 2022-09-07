@@ -23,4 +23,3 @@ void (*get_func(char *command))(char **)
 	}
 	return (NULL);
 }
-
