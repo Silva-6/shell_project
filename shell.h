@@ -29,28 +29,24 @@ typedef struct internal_func
 	void (*func)(char **command);
 } map_func;
 
-typedef struct data
-{
-	char *oldPath;
-} data_h;
-
 /* builtin command */
-void env(char **, data_h *);
-void ch_dir(char **, data_h);
+void env(char **);
+void ch_dir(char **);
 void quit(char **);
 
 /* shell utility function */
 void ctrl_C(int);
 char *_getline(void);
 char **tokenize(char *, const char *);
-void shell_execute(char **, int, data_h);
+void shell_execute(char **, int);
 int check_command(char *);
-void execute(char **, int, data_h);
+void execute(char **, int);
+
 
 
 /* shell helper function */
 int print(char *, int);
-void (*get_func(char *))(char **, data_h *);
+void (*get_func(char *))(char **);
 
 /* shell string functions */
 int _strlen(char *);
@@ -65,4 +61,3 @@ void *_realloc(void *, int, int);
 char *_getenv(char *);
 
 #endif /* SHELL_H */
-
